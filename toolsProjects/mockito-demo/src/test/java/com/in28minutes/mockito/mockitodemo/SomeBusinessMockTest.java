@@ -12,13 +12,19 @@ public class SomeBusinessMockTest {
 	public void testFindTheGreatestFromAllData() {
 		DataService dataServiceMock = mock(DataService.class);
 		when(dataServiceMock.retrieveAllData()).thenReturn(new int[] {24, 3, 6});
-		
-		
 		SomeBusinessImpl businessImpl = new SomeBusinessImpl(dataServiceMock);
 		int result = businessImpl.findTheGreatestFromAllData();
 		assertEquals(24, result);
 	}
 
+	@Test
+	public void testFindTheGreatestFromOne() {
+		DataService dataServiceMock = mock(DataService.class);
+		when(dataServiceMock.retrieveAllData()).thenReturn(new int[] {6});
+		SomeBusinessImpl businessImpl = new SomeBusinessImpl(dataServiceMock);
+		int result = businessImpl.findTheGreatestFromAllData();
+		assertEquals(6, result);
+	}
 }
 
 
