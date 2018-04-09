@@ -1,16 +1,16 @@
 package com.in28minutes.springboot.basics.springbootin10steps;
 
 public class Book {
-	int id;
+	long id;
 	String name;
 	String author;
-	public Book(int id, String name, String author) {
+	public Book(long id, String name, String author) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.author = author;
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	public String getName() {
