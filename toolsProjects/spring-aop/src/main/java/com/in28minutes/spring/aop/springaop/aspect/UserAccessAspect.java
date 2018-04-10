@@ -18,5 +18,6 @@ public class UserAccessAspect {
 	public void before (JoinPoint joinPoint) {
 		logger.info("Check for user access");
 		logger.info("User access allowed for method - {}", joinPoint);
+		
 	}
 }
