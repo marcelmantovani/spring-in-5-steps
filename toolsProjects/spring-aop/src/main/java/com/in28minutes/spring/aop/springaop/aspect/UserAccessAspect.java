@@ -14,7 +14,7 @@ public class UserAccessAspect {
 	
 	// What kind of method calls I would intercept?
 	// execution (* PACKAGE.*.*(..))
-	@Before("execution(* com.in28minutes.spring.aop.springaop.business.*.*(..))")
+	@Before("com.in28minutes.spring.aop.springaop.aspect.CommonJoinPointConfig.dataLayerExecution()")
 	public void before (JoinPoint joinPoint) {
 		logger.info("Check for user access");
 		logger.info("User access allowed for method - {}", joinPoint);

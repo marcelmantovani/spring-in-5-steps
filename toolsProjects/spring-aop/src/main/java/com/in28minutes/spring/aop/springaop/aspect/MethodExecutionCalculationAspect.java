@@ -13,7 +13,7 @@ public class MethodExecutionCalculationAspect {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 
-	@Around("execution(* com.in28minutes.spring.aop.springaop.business.*.*(..))")
+	@Around("com.in28minutes.spring.aop.springaop.aspect.CommonJoinPointConfig.businessLayerExecution()")
 	public Object around (ProceedingJoinPoint joinPoint) throws Throwable {
 		long startTime = System.currentTimeMillis();
 		Object proceed = joinPoint.proceed(); // must use return and pass on, otherwise return of business class is lost
