@@ -10,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.in28minutes.database.databasedemo.bean.Person;
-import com.in28minutes.database.databasedemo.jdbc.PersonJdbcDAO;
 import com.in28minutes.database.databasedemo.jpa.PersonJpaRepository;
 
 @SpringBootApplication
@@ -34,13 +33,8 @@ public class JpaDemoApplication implements CommandLineRunner {
 		
 		logger.info("Updating 10003 - {} Rows updated", repository.update(new Person(10003, "Hans", "Chicago", new Date())));
 		repository.deleteById(10002);
-		/*
+		
 		logger.info("All person in DB - {}", repository.findAll());
-		logger.info("Deleting user ID 10002 - {} Rows deleted", repository.deleteById(10002));
-		
-		logger.info("Person left after delete DB - {}", repository.findAll());
-		
-		
-		*/
+
 	}
 }
