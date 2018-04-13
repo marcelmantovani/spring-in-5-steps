@@ -10,18 +10,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.in28minutes.database.databasedemo.bean.Person;
-import com.in28minutes.database.databasedemo.jpa.PersonJpaRepository;
+import com.in28minutes.database.databasedemo.springdata.PersonSpringDataRepository;
 
-//@SpringBootApplication
-public class JpaDemoApplication implements CommandLineRunner {
+@SpringBootApplication
+public class SpringDataDemoApplication implements CommandLineRunner {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
-	PersonJpaRepository repository;
+	PersonSpringDataRepository repository;
 	
 	public static void main(String[] args)  {
-		SpringApplication.run(JpaDemoApplication.class, args);
+		SpringApplication.run(SpringDataDemoApplication.class, args);
 	}
 
 	@Override
@@ -29,9 +29,9 @@ public class JpaDemoApplication implements CommandLineRunner {
 		
 		
 		logger.info("User ID 10001 - {}", repository.findById(10001));
-		logger.info("Inserting new person - {} Rows inserted", repository.insert(new Person( "Jeff", "Chicago", new Date())));
+		logger.info("Inserting new person - {} Rows inserted", repository.save(new Person( "Jeff", "Chicago", new Date())));
 		
-		logger.info("Updating 10003 - {} Rows updated", repository.update(new Person(10003, "Hans", "Chicago", new Date())));
+		logger.info("Updating 10003 - {} Rows updated", repository.save(new Person(10003, "Hans", "Chicago", new Date())));
 		repository.deleteById(10002);
 		
 		logger.info("All person in DB - {}", repository.findAll());
