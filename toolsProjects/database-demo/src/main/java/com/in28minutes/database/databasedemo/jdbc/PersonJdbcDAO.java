@@ -1,11 +1,14 @@
 package com.in28minutes.database.databasedemo.jdbc;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.in28minutes.database.databasedemo.bean.Person;
@@ -16,8 +19,22 @@ public class PersonJdbcDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
+	class PersonRowMapper implements RowMapper<Person>{
+
+		@Override
+		public Person mapRow(ResultSet arg0, int arg1) throws SQLException {
+			Person person = new Person();
+			person.setId(arg0.getInt("id"));
+			person.setName(arg0.getString("name"));
+			person.setLocation(arg0.getString("location"));
+			person.setBirth_date(arg0.getTimestamp("birth_date"));
+			return person;
+		}
+		
+	}
+	
 	public List<Person> findAll(){
-		return jdbcTemplate.query("select * from person", new BeanPropertyRowMapper<Person>(Person.class));
+		return jdbcTemplate.query("select * from person", new PersonRowMapper());
 		
 	}
 	
