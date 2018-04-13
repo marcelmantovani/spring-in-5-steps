@@ -1,5 +1,6 @@
 package com.in28minutes.database.databasedemo.jdbc;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,21 @@ public class PersonJdbcDAO {
 				("delete person where id = ?", new Object[] {id});
 		
 	}
+	
+	
+	public int insert(Person person){
+		return jdbcTemplate.update
+				("insert into person (id, name, location, birth_date) values ( ?, ?, ?, ? )", 
+						new Object[] {person.getId(), person.getName(), person.getLocation(), new Timestamp(person.getBirth_date().getTime())});
+		
+	}
+	
+	public int update(Person person){
+		return jdbcTemplate.update
+				("update person set name = ? , location = ? , birth_date = ? "
+						+ "where id = ? ", 
+						new Object[] {person.getName(), person.getLocation(), new Timestamp(person.getBirth_date().getTime()), person.getId()});
+		
+	}
+	
 }
