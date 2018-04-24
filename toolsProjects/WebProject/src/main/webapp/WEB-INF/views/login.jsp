@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>JSP Title</title>
+<title>Loging Page</title>
 </head>
 <body>
 <form action="login.do" method="post">
-Enter your name <input type="text" name="name"/> <input type="submit" value="Login">
+<p>${errorMessage }</p>
+Enter your name <input type="text" name="name"/> <br>
+Enter your password <input type="password" name="password"/> <br>
+<input type="submit" value="Login">
 </form>
 </body>
 </html>
